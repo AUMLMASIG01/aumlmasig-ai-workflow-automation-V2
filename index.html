@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101218">
+<title>AUMLMASIG｜把重複工作交給 AI｜工作流程自動化</title>
+<meta name="description" content="先算清楚一個工作流程每月花多少人工，再決定值不值得自動化。內建回本試算，從一個 Workflow 的 Paid PoC 開始驗證。">
+<meta property="og:title" content="AUMLMASIG｜企業 AI 工作流程自動化">
+<meta property="og:description" content="AI 先分類、摘要、打草稿，每一筆送出前由你確認。試算能拿回多少時間，一鍵產生給主管的提案單。">
+<style>
+:root{--d:#101218;--i:#171a22;--m:#6b7280;--l:#e2e5ea;--s:#f5f6f8;--p:#6847e8;--p2:#5638ca;--ok:#177a52;--w:#946200;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;color:var(--i);line-height:1.68;background:#fff}a{color:inherit}.wrap{max-width:1160px;margin:auto;padding:0 28px}
+.top{background:#090a0d;color:#ddd;font-size:13px}.top .wrap{min-height:38px;display:flex;justify-content:space-between;align-items:center}.top a{color:#fff;text-decoration:none;font-weight:800}
+.hero{background:radial-gradient(circle at 82% 20%,rgba(104,71,232,.28),transparent 29%),linear-gradient(135deg,#171a22,#101218 62%,#090a0d);color:#fff;padding:76px 0 68px}.brand{font-weight:900;letter-spacing:.22em}
+.hg{display:grid;grid-template-columns:1.16fr .84fr;gap:52px;align-items:center;margin-top:20px}.eye{color:var(--p);font-size:14px;font-weight:900;letter-spacing:.1em}.hero .eye{color:#cbbfff}
+h1{font-size:clamp(36px,5vw,60px);line-height:1.1;letter-spacing:-.03em;margin:10px 0 20px}h2{font-size:clamp(28px,4vw,42px);line-height:1.2;margin:8px 0 14px}.copy{font-size:19px;color:#e6e7eb}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;min-height:48px;padding:0 20px;border-radius:12px;align-items:center;justify-content:center;text-decoration:none;border:1px solid transparent;cursor:pointer;font:inherit;font-weight:900}.primary{background:var(--p);color:#fff}.primary:hover{background:var(--p2)}.ghost{border-color:#ffffff48;color:#fff;background:#ffffff0d}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.point{border:1px solid #ffffff24;background:#ffffff0f;border-radius:14px;padding:13px;text-align:center;font-weight:800;font-size:14px}
+.art{background:#f1f2f6;color:var(--i);border-radius:24px;padding:26px;box-shadow:0 28px 70px #0006}.art h3{margin:0 0 12px;font-size:18px}.ex{display:grid;grid-template-columns:1fr auto;gap:6px 14px;font-size:15px}.ex b{text-align:right}.ex .tot{border-top:1px solid #cfd3dc;padding-top:8px;margin-top:4px;font-size:17px}.ex .good{color:var(--ok)}.art small{display:block;color:var(--m);margin-top:12px;font-size:12px}
+.sec{padding:66px 0}.soft{background:var(--s)}.lead{font-size:18px;color:var(--m);max-width:900px}.grid3,.values{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}.card,.value{background:#fff;border:1px solid var(--l);border-radius:18px;padding:24px;box-shadow:0 10px 28px #1012180d}.featured{border:2px solid #b9a9ff}.badge{display:inline-block;background:var(--d);color:#fff;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900}.featured .badge{background:var(--p)}
+.card h3,.value strong{font-size:20px;display:block;margin:12px 0 7px}.card ul{padding-left:19px}.muted{color:var(--m)}.offer{border-top:1px solid var(--l);padding-top:16px;margin-top:18px}.offer .btn{width:100%;background:var(--d);color:#fff}
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.fit div{border-radius:16px;padding:22px;border:1px solid var(--l);background:#fff}.fit .yes{border:2px solid #9fd9bf;background:#f3fbf7}.fit .no{border:2px solid #f2c4bf;background:#fdf5f4}.fit h3{margin:0 0 8px}.fit ul{margin:0;padding-left:19px}
+.calc{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;margin-top:26px;align-items:start}.calc form,.calc .out{background:#fff;border:1px solid var(--l);border-radius:20px;padding:24px;box-shadow:0 10px 28px #1012180d}
+.out .big{font-size:40px;font-weight:900;line-height:1.1;margin:4px 0}.out .row2{display:flex;justify-content:space-between;border-bottom:1px solid var(--l);padding:9px 0;gap:12px}.out .row2 b{white-space:nowrap}.verdict{margin-top:14px;padding:14px;border-radius:12px;font-weight:800}.v-ok{background:#eaf7f1;color:var(--ok)}.v-mid{background:#fff6e5;color:var(--w)}.v-bad{background:#fdecea;color:var(--bad)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:25px}.step{background:#fff;border:1px solid var(--l);border-radius:14px;padding:18px}.step strong{display:block}.step span{color:var(--m);font-size:14px}.notice{margin-top:28px;border-left:5px solid #c58a16;background:#fff9e9;padding:16px 18px;border-radius:10px;color:#574518}
+.inq{display:grid;grid-template-columns:.82fr 1.18fr;gap:34px;align-items:start}.inqcopy{background:var(--d);color:#fff;padding:30px;border-radius:20px}.inqcopy p{color:#dfe1e7}.inqcopy a{color:#fff;font-weight:900}
+#f{border:1px solid var(--l);border-radius:20px;padding:26px;box-shadow:0 12px 34px #10121812}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.full{grid-column:1/-1}label{font-size:13px;font-weight:900}
+input,select,textarea{width:100%;border:1px solid #cfd3dc;border-radius:10px;padding:12px 13px;font:inherit;background:#fff}textarea{min-height:100px}.hint{font-size:12px;color:var(--m)}.check{display:flex;gap:10px;background:#faf9ff;border:1px solid #d9d0ff;border-radius:12px;padding:12px}.check input{width:auto;margin-top:5px}.hp{position:absolute;left:-9999px}.note{font-size:12px;color:var(--m);margin-top:10px}.status{font-weight:800;margin-top:10px;min-height:20px}.fallback{display:none;margin-top:12px;padding:14px;border:1px dashed #c9a24a;background:#fffaf0;border-radius:12px}.fallback textarea{min-height:150px;font-size:13px}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.row .btn{min-height:40px;background:var(--d);color:#fff}
+footer{background:#090a0d;color:#cbd0da;padding:32px 0;font-size:13px}footer strong,footer a{color:#fff}
+@media(max-width:900px){.hg,.inq,.grid3,.calc{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.wrap{padding:0 16px}.hero{padding:50px 0}.points,.values,.flow,.fields,.fit{grid-template-columns:1fr}.sec{padding:48px 0}.top span{display:none}.out .big{font-size:32px}}
+</style></head><body>
+<div class="top"><div class="wrap"><span>AUMLMASIG｜協碩科技聯合有限公司｜企業 AI 工作流程解決方案</span><a href="mailto:contact@aumlmasig.com">contact@aumlmasig.com</a></div></div>
+
+<header class="hero"><div class="wrap"><div class="brand">AUMLMASIG</div><div class="hg">
+<div><div class="eye">給每天被重複工作追著跑的你</div><h1>把重複的 Email、訂單、報表整理交給 AI，<br>你只負責最後確認。</h1>
+<p class="copy">不是取代你，是把你從重複工作裡拿回時間。AI 先分類、摘要、打草稿；每一筆對外送出或修改正式資料之前，都由你按下核准。先用 1 分鐘試算能拿回多少時間，再一鍵整理成給主管的提案單。</p>
+<div class="actions"><a class="btn primary" href="#roi">試算我能拿回多少時間</a><a class="btn ghost" href="#why">為什麼這不是在取代你</a></div>
+<div class="points"><div class="point">最後決定權在你手上</div><div class="point">提案單幫你寫好</div><div class="point">一次只試 1 個流程</div></div></div>
+<div class="art"><h3>試算範例｜客服 Email 回覆流程</h3>
+<div class="ex">
+<span>目前每週花在這個流程</span><b>40 小時</b>
+<span>AI 先處理（保守估 60%）</span><b>分類・摘要・草稿</b>
+<span class="tot">團隊每週拿回</span><b class="tot good">24 小時</b>
+<span>拿回的時間可以用在</span><b>客戶跟進、例外處理、專案</b>
+<span class="tot">給主管看的數字：導入回本</span><b class="tot good">約 7.1 個月</b>
+</div>
+<small>此為公式試算範例，非實際案例；實際結果依 PoC 實測為準。</small></div></div></div></header>
+
+<section class="sec" id="why"><div class="wrap"><div class="eye">為什麼這不是在取代你</div><h2>AI 做重複的部分，判斷和決定仍然是你的。</h2>
+<p class="lead">導入後，你在流程裡的角色從「手動處理每一筆」變成「審核與處理例外」。重複工作變少，你的經驗反而更重要。</p>
+<div class="grid3">
+<div class="card"><span class="badge">你是核准者</span><h3>AI 不會自己送出</h3><p class="muted">對外寄信、報價、修改正式資料，都要你按下核准。AI 只負責讀、分類、摘要、打草稿。</p></div>
+<div class="card featured"><span class="badge">你是導入負責人</span><h3>這是你的成果</h3><p class="muted">PoC 結束會交付一份實測報告：拿回多少時間、準確率多少。這份成果記在提案的人身上，不是記在 AI 身上。</p></div>
+<div class="card"><span class="badge">你處理例外</span><h3>難的仍需要你</h3><p class="muted">AI 不確定、資料異常、客戶抱怨的案件，會自動標記交給你。規則由你定，AI 照你的規則做。</p></div>
+</div>
+<div class="fit" style="margin-top:22px">
+<div class="no"><h3>導入前：你的一週</h3><ul><li>逐封打開 Email、複製貼上到表格</li><li>同樣的問題回答第 50 次</li><li>月底對帳、對訂單熬夜加班</li><li>漏一封信就被追究</li></ul></div>
+<div class="yes"><h3>導入後：你的一週</h3><ul><li>早上看 AI 整理好的摘要與草稿，確認後送出</li><li>重複問題由草稿處理，你只改特殊案例</li><li>異常自動標紅，不再靠人工翻找</li><li>每一筆都有紀錄，出事有據可查</li></ul></div>
+</div></div></section>
+
+<section class="sec soft"><div class="wrap"><div class="eye">先判斷值不值得</div><h2>不是每個流程都值得用 AI。</h2>
+<p class="lead">自動化有建置費和維護費。人工時數太少的流程，省下的錢付不起維護費，永遠不會回本。我們寧可在試算階段就告訴您不要做。</p>
+<div class="fit">
+<div class="yes"><h3>✅ 適合自動化</h3><ul><li>每週人工 <b>20 小時以上</b>，或錯誤一次就會造成明顯損失</li><li>高頻、重複、有規則可循（分類、摘要、抽取、草稿）</li><li>可以清楚定義「做對」長什麼樣子</li><li>結果可由人員在送出前確認</li></ul></div>
+<div class="no"><h3>❌ 暫不建議</h3><ul><li>每週人工少於 10 小時</li><li>每次都需要高度判斷、沒有固定規則</li><li>錯了也很難發現或很難驗收</li><li>需要 AI 自動對外付款、退款或簽約</li></ul></div>
+</div></div></section>
+
+<section class="sec soft" id="roi"><div class="wrap"><div class="eye">1 分鐘回本試算</div><h2>試算你能拿回多少時間，再交給主管看回本。</h2>
+<p class="lead">不知道薪資沒關係，時薪欄保留預設值即可，主管看到提案單時可以自己改。試算只在你的瀏覽器裡計算，不會傳送任何資料。</p>
+<div class="calc">
+<form id="calc" onsubmit="return false">
+<div class="fields">
+<div class="field"><label for="c_hours">這個流程每週人工時數</label><input id="c_hours" type="number" min="0" step="1" value="40"><span class="hint">所有人員加總，例如 2 人 × 每天 4 小時 × 5 天 = 40</span></div>
+<div class="field"><label for="c_rate">每小時人力成本（NT$，不確定就用預設值）</label><input id="c_rate" type="number" min="0" step="10" value="300"><span class="hint">月薪 × 1.2（勞健保、退休金）÷ 每月工時。月薪 4 萬約為 NT$275</span></div>
+<div class="field"><label for="c_ratio">預估可自動化比例（%）</label><input id="c_ratio" type="number" min="0" max="100" step="5" value="60"><span class="hint">保守建議 40–60%，PoC 會實測</span></div>
+<div class="field"><label for="c_err">每月錯誤／漏件造成的損失（NT$）</label><input id="c_err" type="number" min="0" step="1000" value="0"><span class="hint">退貨、重寄、罰款、客訴處理；不確定填 0</span></div>
+<div class="field"><label for="c_inv">一次性導入費用（NT$）</label><input id="c_inv" type="number" min="0" step="10000" value="150000"><span class="hint">參考區間 NT$80,000～300,000／流程</span></div>
+<div class="field"><label for="c_mnt">每月維護費（NT$）</label><input id="c_mnt" type="number" min="0" step="1000" value="10000"><span class="hint">參考 NT$10,000 起，依 SLA 而定</span></div>
+</div></form>
+<div class="out" aria-live="polite">
+<div class="muted">團隊每週可拿回</div><div class="big" id="o_hrs">—</div>
+<div class="muted" style="margin-top:10px;font-weight:800">給主管看的數字</div>
+<div class="row2"><span>每月淨省下</span><b id="o_net">—</b></div>
+<div class="row2"><span>目前每月人工成本</span><b id="o_cost">—</b></div>
+<div class="row2"><span>自動化每月可減少（含錯誤損失）</span><b id="o_save">—</b></div>
+<div class="row2"><span>扣除每月維護費後淨額</span><b id="o_net2">—</b></div>
+<div class="row2"><span>一年淨效益（第一年，已扣導入費）</span><b id="o_year">—</b></div>
+<div class="row2"><span>導入費回本期</span><b id="o_pb">—</b></div>
+<div class="verdict" id="o_v">—</div>
+<button class="btn primary" style="width:100%;margin-top:14px" type="button" id="printBrief">產生給主管的提案單（可列印／存 PDF）</button>
+<button class="btn" style="width:100%;margin-top:10px;background:#101218;color:#fff" type="button" id="useCalc">帶入試算結果，直接申請評估</button>
+<p class="note">試算僅供初步判斷，不代表報價或效益保證。實際可自動化比例以 Paid PoC 實測為準。</p>
+</div></div></div></section>
+
+<section class="sec" id="poc"><div class="wrap"><div class="eye">低風險商品階梯</div><h2>試算划算，才用小額驗證；驗證達標，才擴大。</h2><p class="lead">您第一次要決定的不是「要不要導入 AI」，而是「要不要花一筆可控的小錢，實測這個流程到底能省多少」。</p>
+<div class="grid3">
+<article class="card"><span class="badge">STEP 0｜免費</span><h3>回本試算＋需求初評</h3><ul><li>用上方試算確認值不值得</li><li>提交流程、處理量與工時</li><li>我們回覆建議方向，或直接告訴您不建議做</li></ul><div class="offer"><strong>不產生費用</strong><p class="muted">不包含免費客製開發。</p><a class="btn" href="#inquiry">提交 Workflow</a></div></article>
+<article class="card featured"><span class="badge">STEP 1｜PAID POC</span><h3>實測這個流程能省多少</h3><ul><li>1 個 Workflow、1 個資料來源、1 個輸出</li><li>用您的真實（去識別化）資料實測</li><li>交付：實測省下工時、準確率、回本期報告</li><li>未達約定 KPI，可停止，不自動升級正式案</li></ul><div class="offer"><strong>參考預算 NT$30,000～100,000</strong><p class="muted">依 Scope、資料與整合範圍報價；正式導入時可依報價折抵。</p><a class="btn" href="#inquiry">評估 Paid PoC</a></div></article>
+<article class="card"><span class="badge">STEP 2｜正式導入</span><h3>依實測回本期決定</h3><ul><li>Cloud AI Automation</li><li>Hybrid Private AI Gateway（敏感資料先遮蔽）</li><li>Private AI Node（資料不出內網）</li><li>維護、監控、新增 Workflow</li></ul><div class="offer"><strong>不在 PoC 前綁定大架構</strong><p class="muted">正式部署、硬體、維護、SLA 另案確認。</p></div></article>
+</div></div></section>
+
+<section class="sec soft"><div class="wrap"><div class="eye">導入流程</div><h2>把未知的大專案，縮成可停止的小實驗。</h2>
+<div class="flow"><div class="step"><strong>01 試算</strong><span>回本期是否 &lt; 12 個月</span></div><div class="step"><strong>02 Scope</strong><span>資料、輸出、人工確認點、KPI</span></div><div class="step"><strong>03 Paid PoC</strong><span>真實資料實測</span></div><div class="step"><strong>04 實測報告</strong><span>實際省下工時與回本期</span></div><div class="step"><strong>05 決定擴大</strong><span>達標才正式部署</span></div></div>
+<div class="notice"><strong>企業合作開發／市場驗證說明：</strong>本頁用於需求評估與 Paid PoC 市場驗證。試算範例為公式示範，非實際客戶案例。實際功能、模型、資料來源、整合、資安邊界、準確率、價格、交期、SLA 與部署方式，以個案 Scope、測試與正式報價／契約確認；本頁不構成特定效能、準確率、節省金額或資安保證。</div></div></section>
+
+<section class="sec" id="inquiry"><div class="wrap inq"><div class="inqcopy"><div class="eye" style="color:#cbbfff">企業 Workflow 評估</div><h2>告訴我們哪一個流程最耗人工。</h2><p>我們會在 3 個工作天內回覆：值不值得做、建議哪一種架構，以及 Paid PoC 的範圍與報價。算不回本，我們會直接說。</p><p style="font-size:13px">提交需求不代表下單，也不產生費用。正式 Scope、價格、付款、資料處理與責任另行確認。</p><a href="mailto:contact@aumlmasig.com">contact@aumlmasig.com</a></div>
+<form id="f" novalidate><div class="fields">
+<div class="field"><label>公司名稱 *</label><input name="company" required autocomplete="organization"></div><div class="field"><label>聯絡人 *</label><input name="contact" required autocomplete="name"></div>
+<div class="field"><label>Email *</label><input name="email" type="email" required autocomplete="email"></div><div class="field"><label>電話</label><input name="phone" autocomplete="tel"></div>
+<div class="field"><label>您的角色 *</label><select name="role" required><option value="">請選擇</option><option>流程承辦人／使用者</option><option>工程師／IT</option><option>PM／專案負責人</option><option>採購</option><option>部門主管</option><option>老闆／決策者</option></select></div>
+<div class="field"><label>最後由誰決定導入？</label><select name="decider"><option>未確定</option><option>我自己</option><option>直屬主管</option><option>老闆</option><option>採購／委員會</option></select></div>
+<div class="field"><label>想先驗證的 Workflow *</label><select name="workflow" required><option value="">請選擇</option><option>Email 分類與回覆草稿</option><option>客服問答與回覆草稿</option><option>訂單處理與異常檢查</option><option>發票資料整理與核對</option><option>B2B 業務名單整理與追蹤</option><option>其他流程</option></select></div>
+<div class="field"><label>大約處理量</label><input name="volume" placeholder="例如每週 300 封 Email"></div>
+<div class="field"><label>每週人工時數 *</label><input name="hours" id="f_hours" required placeholder="例如 40 小時"></div>
+<div class="field"><label>資料敏感度</label><select name="sensitivity"><option>未確定</option><option>公開／低敏感</option><option>一般內部資料</option><option>客戶／訂單／報價等機密資料</option><option>高機密／政策要求不能離開內網</option></select></div>
+<div class="field full"><label>回本試算結果</label><input name="roi" id="f_roi" readonly placeholder="可先在上方試算後按「帶入試算結果」"></div>
+<div class="field full"><label>目前怎麼做？最常出什麼錯？</label><textarea name="current" placeholder="人工流程、使用工具、錯誤、漏件或延誤"></textarea></div>
+<div class="field full"><label>Paid PoC 預算接受度</label><select name="budget"><option>未確定／希望先評估</option><option>可評估 NT$30,000～50,000</option><option>可評估 NT$50,001～100,000</option><option>可評估 NT$100,000 以上</option><option>目前沒有 Paid PoC 預算</option></select></div>
+<div class="field full"><label>預計導入時間</label><select name="timeline"><option>未確定</option><option>1 個月內</option><option>1–3 個月</option><option>3–6 個月</option><option>6 個月以後</option></select></div>
+<div class="field full check"><input name="needHelp" id="needHelp" type="checkbox" value="需要"><label for="needHelp">需要你們協助準備給主管或採購的說明資料（例如 15 分鐘線上簡報）。</label></div>
+<div class="field full check"><input name="paidPoc" id="paidPoc" type="checkbox" value="願意"><label for="paidPoc">若 Scope、資料邊界與 KPI 符合需求，我們願意進一步評估付費 PoC。勾選不代表下單。</label></div>
+<input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"></div>
+<button class="btn primary" id="submit" style="width:100%;margin-top:16px" type="submit">送出 Workflow 評估需求</button>
+<div class="note">請勿在表單中填入密碼、API Key、Token、未遮蔽個資或其他高機密內容。</div><div class="status" id="status" role="status" aria-live="polite"></div>
+<div class="fallback" id="fallback"><strong>線上送出暫時無法使用，請改用以下方式（內容已整理好）：</strong><textarea id="fb" readonly></textarea><div class="row"><button type="button" class="btn" id="copy">複製內容</button><a class="btn" id="mail" href="mailto:contact@aumlmasig.com">用 Email 軟體寄出</a></div></div>
+</form></div></section>
+
+<footer><div class="wrap"><strong>AUMLMASIG｜協碩科技聯合有限公司</strong><br>企業 AI 工作流程自動化｜把重複工作交給 AI，決定權留給你<br><a href="mailto:contact@aumlmasig.com">contact@aumlmasig.com</a></div></footer>
+<script>
+/* 上線設定：FORM_ENDPOINT 填入 formspree 等表單收件網址；留空時自動改用 Email 備援流程 */
+const FORM_ENDPOINT="";
+(function(){
+const $=id=>document.getElementById(id);
+const WEEKS=4.33;
+const nt=n=>(n<0?"－":"")+"NT$"+Math.round(Math.abs(n)).toLocaleString("zh-TW");
+const num=id=>{const v=parseFloat($(id).value);return isFinite(v)&&v>0?v:0};
+let last="";
+function track(ev,p){try{if(typeof window.gtag==="function")window.gtag("event",ev,p||{});if(Array.isArray(window.dataLayer))window.dataLayer.push(Object.assign({event:ev},p||{}))}catch(e){}}
+function calc(){
+  const h=num("c_hours"),r=num("c_rate"),ratio=Math.min(num("c_ratio"),100)/100,err=num("c_err"),inv=num("c_inv"),mnt=num("c_mnt");
+  const cost=h*r*WEEKS, save=cost*ratio+err, net=save-mnt, year=net*12-inv;
+  $("o_hrs").textContent=(Math.round(h*ratio*10)/10)+" 小時";
+  window.__brief={h,r,ratio,err,inv,mnt,cost,save,net,year};
+  $("o_cost").textContent=nt(cost);$("o_save").textContent=nt(save);$("o_net2").textContent=nt(net);$("o_net").textContent=nt(net);$("o_year").textContent=nt(year);
+  const v=$("o_v");let pb;
+  if(net<=0){$("o_pb").textContent="無法回本";v.className="verdict v-bad";v.textContent="省下的錢付不起維護費，不建議自動化這個流程。可考慮合併其他流程，或先優化人工作業。";pb="無法回本"}
+  else{pb=inv/net;$("o_pb").textContent=pb.toFixed(1)+" 個月";
+    if(pb<=12){v.className="verdict v-ok";v.textContent="回本期 12 個月內，值得用 Paid PoC 實測。"}
+    else if(pb<=24){v.className="verdict v-mid";v.textContent="回本期 1～2 年，建議先用 PoC 確認實際可自動化比例，再決定。"}
+    else{v.className="verdict v-bad";v.textContent="回本期超過 2 年，目前不建議導入。"}
+    pb=pb.toFixed(1)+" 個月"}
+  last="每週 "+h+" 小時｜時薪 NT$"+r+"｜自動化 "+Math.round(ratio*100)+"%｜錯誤損失 "+nt(err)+"/月｜導入 "+nt(inv)+"｜維護 "+nt(mnt)+"/月 → 每月淨省 "+nt(net)+"，回本 "+pb;
+}
+function brief(){const b=window.__brief;if(!b)return;const pbm=b.net>0?(b.inv/b.net).toFixed(1)+" 個月":"無法回本";
+const w=window.open("","_blank");if(!w){alert("請允許彈出視窗後再試一次");return}
+const d=new Date().toLocaleDateString("zh-TW");
+w.document.write(`<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>工作流程自動化評估提案單</title><style>body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;max-width:760px;margin:32px auto;padding:0 20px;color:#171a22;line-height:1.7}h1{font-size:24px;margin:0 0 4px}table{width:100%;border-collapse:collapse;margin:14px 0}td{border:1px solid #d8dbe2;padding:8px 10px}td:first-child{background:#f5f6f8;width:46%}.k{font-size:20px;font-weight:900;color:#177a52}.n{font-size:12px;color:#6b7280}@media print{button{display:none}}</style></head><body>
+<h1>工作流程自動化評估提案單</h1><div class="n">日期：${d}｜提案人：＿＿＿＿＿＿｜流程名稱：＿＿＿＿＿＿</div>
+<h2 style="font-size:18px">一、建議</h2><p>先以小額 Paid PoC 實測一個流程，確認實際可節省的時間與準確率，再決定是否正式導入。PoC 未達約定 KPI 可停止，不自動擴大投資。</p>
+<h2 style="font-size:18px">二、試算結果</h2><table>
+<tr><td>目前每週人工時數</td><td>${b.h} 小時</td></tr>
+<tr><td>預估 AI 先處理比例</td><td>${Math.round(b.ratio*100)}%</td></tr>
+<tr><td>團隊每週可拿回時間</td><td class="k">${Math.round(b.h*b.ratio*10)/10} 小時</td></tr>
+<tr><td>目前每月人工成本（時薪 NT$${b.r}）</td><td>${nt(b.cost)}</td></tr>
+<tr><td>扣除每月維護 ${nt(b.mnt)} 後，每月淨省下</td><td class="k">${nt(b.net)}</td></tr>
+<tr><td>一次性導入費用（參考）</td><td>${nt(b.inv)}</td></tr>
+<tr><td>導入費回本期</td><td class="k">${pbm}</td></tr></table>
+<h2 style="font-size:18px">三、風險控制</h2><ul><li>對外寄信、報價、修改正式資料，一律由承辦人核准後才執行</li><li>先以去識別化資料進行 PoC，敏感資料可選擇不離開公司內網</li><li>所有處理結果留有紀錄，可追查</li><li>PoC 範圍固定：1 個流程、1 個資料來源、1 個輸出</li></ul>
+<h2 style="font-size:18px">四、拿回的時間將用於</h2><p>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿（例：客戶跟進、例外處理、改善專案）</p>
+<p class="n">本單為公式試算，非報價或效益保證；實際結果以 PoC 實測報告為準。方案提供：AUMLMASIG｜協碩科技聯合有限公司｜contact@aumlmasig.com</p>
+<button onclick="print()" style="padding:10px 18px;font-weight:900">列印／另存 PDF</button></body></html>`);w.document.close();track("brief_generated")}
+$("printBrief").onclick=brief;
+["c_hours","c_rate","c_ratio","c_err","c_inv","c_mnt"].forEach(id=>$(id).addEventListener("input",calc));
+calc();
+let calcTracked=false;$("calc").addEventListener("input",()=>{if(!calcTracked){calcTracked=true;track("roi_calc_use")}});
+$("useCalc").onclick=()=>{$("f_roi").value=last;if(!$("f_hours").value)$("f_hours").value=$("c_hours").value+" 小時";track("roi_to_form");$("inquiry").scrollIntoView({behavior:"smooth"});setTimeout(()=>document.querySelector('[name=company]').focus(),500)};
+
+const f=$("f"),st=$("status"),fb=$("fb"),fallback=$("fallback"),btn=$("submit");
+const SUBJ="AUMLMASIG｜企業 AI Workflow Paid PoC｜需求評估";
+function data(){const x=new FormData(f),d={};for(const [k,v] of x.entries())d[k]=String(v).trim();return d}
+function text(d){return [SUBJ,"","公司："+(d.company||""),"角色："+(d.role||""),"決策者："+(d.decider||""),"需要協助向主管說明："+(d.needHelp?"是":"否"),"聯絡人："+(d.contact||""),"Email："+(d.email||""),"電話："+(d.phone||""),"Workflow："+(d.workflow||""),"處理量："+(d.volume||""),"每週人工時數："+(d.hours||""),"資料敏感度："+(d.sensitivity||""),"回本試算："+(d.roi||"未試算"),"目前流程："+(d.current||""),"PoC 預算："+(d.budget||""),"預計導入時間："+(d.timeline||""),"願意評估 Paid PoC："+(d.paidPoc?"是":"未勾選")].join("\n")}
+function backup(t){fb.value=t;$("mail").href="mailto:contact@aumlmasig.com?subject="+encodeURIComponent(SUBJ)+"&body="+encodeURIComponent(t);fallback.style.display="block"}
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText(fb.value)}catch(e){fb.select();document.execCommand("copy")}st.style.color="var(--ok)";st.textContent="已複製，請貼到 Email 寄至 contact@aumlmasig.com。"};
+f.addEventListener("submit",async e=>{e.preventDefault();if(!f.reportValidity()||f._gotcha.value)return;const d=data(),t=text(d);
+  track("b2b_inquiry_submit",{workflow:d.workflow||"",paid_poc:d.paidPoc?"yes":"no",budget:d.budget||""});
+  if(!FORM_ENDPOINT){st.style.color="var(--w)";st.textContent="請用下方方式完成寄送。";backup(t);return}
+  btn.disabled=true;st.style.color="";st.textContent="送出中…";
+  try{const r=await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(Object.assign({},d,{_subject:SUBJ,摘要:t}))});if(!r.ok)throw Error(r.status);f.reset();st.style.color="var(--ok)";st.textContent="已收到您的需求，我們會在 3 個工作天內回覆。";track("b2b_inquiry_success")}
+  catch(err){st.style.color="var(--w)";st.textContent="線上送出失敗，請改用下方方式寄送。";backup(t)}
+  finally{btn.disabled=false}});
+})();
+</script></body></html>
